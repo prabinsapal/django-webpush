@@ -1,19 +1,17 @@
 // Based On https://github.com/chrisdavidmills/push-api-demo/blob/283df97baf49a9e67705ed08354238b83ba7e9d3/main.js
 
 var isPushEnabled = false,
+    logOutBtn,
     registration,
     subBtn;
 
 window.addEventListener('load', function() {
   subBtn = document.getElementById('webpush-subscribe-button');
+  logOutBtn = document.getElementById('logout-button');
 
-  subBtn.addEventListener('click',
-    function() {
-      subBtn.disabled = true;
-      if (isPushEnabled) {
-        return unsubscribe(registration);
-      }
-      return subscribe(registration);
+  logOutBtn.addEventListener('click',
+    function () {
+      return unsubscribe(registration);
     }
   );
 
