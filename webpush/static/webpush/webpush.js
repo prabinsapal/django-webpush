@@ -59,23 +59,8 @@ window.addEventListener('load', function() {
       return;
     }
 
-    // We need to get subscription state for push notifications and send the information to server
-    reg.pushManager.getSubscription().then(
-      function(subscription) {
-        if (subscription){
-          postSubscribeObj('subscribe', subscription,
-            function(response) {
-              // Check the information is saved successfully into server
-              if (response.status === 201) {
-                // Show unsubscribe button instead
-                subBtn.textContent = gettext('Unsubscribe from Push Messaging');
-                subBtn.disabled = false;
-                isPushEnabled = true;
-                showMessage(gettext('Successfully subscribed to push notifications.'));
-              }
-            });
-        }
-      });
+    // subscribe state for push notifications and send the information to server
+    subscribe(reg);
   }
 }
 );
@@ -94,9 +79,9 @@ function subscribe(reg) {
     function(subscription) {
       var metaObj, applicationServerKey, options;
       // Check if Subscription is available
-      if (subscription) {
-        return subscription;
-      }
+      // if (subscription) {
+      //   return subscription;
+      // }
 
       metaObj = document.querySelector('meta[name="django-webpush-vapid-key"]');
       applicationServerKey = metaObj.content;
