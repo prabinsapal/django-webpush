@@ -79,9 +79,9 @@ function subscribe(reg) {
     function(subscription) {
       var metaObj, applicationServerKey, options;
       // Check if Subscription is available
-      // if (subscription) {
-      //   return subscription;
-      // }
+      if (subscription) {
+        return subscription;
+      }
 
       metaObj = document.querySelector('meta[name="django-webpush-vapid-key"]');
       applicationServerKey = metaObj.content;
